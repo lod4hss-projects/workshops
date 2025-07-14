@@ -4,6 +4,7 @@
 
 https://ag15yl6uwsmzwvsd.allegrograph.cloud/repositories/science-history
 
+Base URI: http://my-projects.org/science-history/
 
 
 ## Bundles
@@ -11,7 +12,7 @@ https://ag15yl6uwsmzwvsd.allegrograph.cloud/repositories/science-history
 
 ### Wikidata
 
-* Data: [graphs/wikidata-imported-data.md](graphs/wikidata-imported-data.md)
+* Data: https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/wikidata-imported-data.md
 * SHACL: https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/wikidata-shacl.md
 
 

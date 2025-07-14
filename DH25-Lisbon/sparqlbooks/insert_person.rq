@@ -1,0 +1,26 @@
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+WITH <https://science-in-context.wisski.cloud/>
+INSERT {?id1 rdf:type crm:E21_Person;
+                crm:P1_is_identified_by ?id2;
+                owl:sameAs ?s.
+           ?id2 rdf:type crm:E41_Appellation;
+                crm:P190_has_symbolic_content ?label.
+                }
+where {
+    {SELECT ?s ?label 
+    (URI(CONCAT('https://science-in-context.wisski.cloud/', STRUUID())) as ?id1)
+    (URI(CONCAT('https://science-in-context.wisski.cloud/', STRUUID())) as ?id2) 
+     WHERE {
+        GRAPH <https://github.com/Sciences-historiques-numeriques/astronomers/blob/main/graphs/wikidata-imported-data.md>{
+            ?s  a  wd:Q5;
+                rdfs:label ?label.
+            }
+    }
+    LIMIT 10
+    }
+}

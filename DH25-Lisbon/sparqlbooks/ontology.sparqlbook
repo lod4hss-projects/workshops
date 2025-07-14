@@ -1,0 +1,20 @@
+[
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "# Inspect the SHACL profiles",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "\n#PREFIX franzOption_defaultDatasetBehavior: <franz:rdf>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX wd: <http://www.wikidata.org/entity/>\n\n\n# View unique named graphs\nSELECT DISTINCT ?sh ?description ?class ?classLabel   ?property ?propertyLabel ?targetClass ?targetClassLabel  ?datatype ?g\n\nWHERE\n{ graph \n # ?g\n <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-shacl.md>\n {\n { ?sh sh:targetClass ?class;\n    sh:name ?classLabel;\n  sh:property ?sh_p.\n  OPTIONAL {?sh sh:description ?description}\n  ?sh_p sh:path ?property;\n    sh:class ?targetClass;\n    sh:name ?targetClassLabel.\n  OPTIONAL{ ?sh_p sh:name ?propertyLabel}\n  }\n UNION\n # datatype properties\n { ?sh sh:targetClass ?class;\n    sh:name ?classLabel;\n    sh:property ?sh_p1.\n    OPTIONAL {?sh sh:description ?description}\n  ?sh_p1 sh:path ?property;\n  sh:datatype ?datatype.\n OPTIONAL{ ?sh_p1 sh:name ?propertyLabel}\n  }\n   }\n }\norder by ?g ?sh ?property\n\n\n\n\n",
+    "metadata": {}
+  }
+]

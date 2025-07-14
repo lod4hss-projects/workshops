@@ -1,0 +1,74 @@
+[
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX sdh: <https://sdhss.org/ontology/core/>\nPREFIX base:<https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/>\n\nSELECT ?place (MIN(?label) AS ?label) \n        (MIN(?geoCoordinates) AS ?geoCoordinates) \nWHERE {\n        GRAPH base:wikidata-imported-data.md\n            {\n            ?place rdf:type sdh:C13;\n                       rdfs:label  ?placeLabel;\n                       wdt:P625 ?coordinates.\n            \n            }\n    \n    BIND(STR(?placeLabel) as ?label)\n    BIND(Replace(?coordinates, 'Point', 'POINT') as ?geoCoordinates)\n\n}\nGROUP BY ?place\nlimit 10\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "SELECT (URI(CONCAT('https://science-in-context.wisski.cloud/', STRUUID())) as ?id1) {}",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX sdh: <https://sdhss.org/ontology/core/>\n\nCONSTRUCT {?id1 rdf:type sdh:C13;\n                owl:sameAs ?place;\n                crm:P1_is_identified_by ?id2.    \n           ?id2 rdf:type crm:E41_Appellation;\n                crm:P3_has_note ?label.\n                }\nwhere {\n    SELECT ?place ?label ?geoCoordinates\n    (URI(CONCAT('https://science-in-context.wisski.cloud/entity/', STRUUID())) as ?id1) \n    (URI(CONCAT('https://science-in-context.wisski.cloud/entity/', STRUUID())) as ?id2) \n    WHERE\n    {\n        SELECT ?place (MIN(?label) AS ?label) \n                (MIN(?geoCoordinates) AS ?geoCoordinates) \n        WHERE {\n            {\n                SERVICE <https://ag16gm9pr0meths2.allegrograph.cloud/repositories/astronomers>\n                {\n                GRAPH <https://github.com/Sciences-historiques-numeriques/astronomers/blob/main/graphs/wikidata-imported-data.md>\n                    {\n                    ?place rdf:type sdh:C13;\n                            rdfs:label  ?placeLabel;\n                            wdt:P625 ?coordinates.\n                    \n                    }\n                }    \n            }\n            BIND(STR(?placeLabel) as ?label)\n            BIND(REPLACE(?coordinates, 'Point', 'POINT') as ?geoCoordinates)\n\n        }\n        GROUP BY ?place\n        LIMIT 5\n    }\n}\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "### Test value type conversion\n\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX geo: <http://www.opengis.net/ont/geosparql#>\nPREFIX ogc: <http://www.opengis.net/ont/geosparql#> \nselect ?geo where {\n    graph <https://science-in-context.wisski.cloud/entity/>\n    {?s crm:P168_place_is_defined_by ?geo .\n    BIND(STR(?geo)^^geo:wktLiteral as ?out)\n        \n    }\n} \nlimit 10\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "### Test value type conversion\n\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX geo: <http://www.opengis.net/ont/geosparql#>\nPREFIX ogc: <http://www.opengis.net/ont/geosparql#> \nselect ?geo (STR(?geo)^^geo:wktLiteral as ?out)\nwhere {\n    graph <https://science-in-context.wisski.cloud/entity/>\n    {?s crm:P168_place_is_defined_by ?geo .\n    # BIND(STR(?geo)^^geo:wktLiteral as ?out)\n        \n    }\n} \nlimit 10\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \nPREFIX ogc: <http://www.opengis.net/ont/geosparql#> \nselect ?out\n    where {\n   #Bind(\"POINT(48.5 11.7)\"^^ogc:wktLiteral as ?out)\n   BIND(\"POINT(13.345242 50.6564031)\"^^ogc:wktLiteral as ?out) \n\n} ",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX sdh: <https://sdhss.org/ontology/core/>\nPREFIX ogc: <http://www.opengis.net/ont/geosparql#> \n\nCONSTRUCT {?id1 rdf:type sdh:C13;\n                owl:sameAs ?place;\n                crm:P1_is_identified_by ?id2.    \n           ?id2 rdf:type crm:E41_Appellation;\n                crm:P3_has_note ?label.\n           ?id3 rdf:type crm:E93_Presence;\n                crm:P167_was_at ?id4;\n                crm:P166_was_a_presence_of ?id1.\n           ?id4 rdf:type crm:E53_Place;\n                crm:P168_place_is_defined_by ?geoCoordinates\n                }\nWHERE {\n    SELECT ?place ?label ?geoCoordinates\n    (URI(CONCAT('https://science-in-context.wisski.cloud/entity/', STRUUID())) as ?id1) \n    (URI(CONCAT('https://science-in-context.wisski.cloud/entity/', STRUUID())) as ?id2)\n    (URI(CONCAT('https://science-in-context.wisski.cloud/entity/', STRUUID())) as ?id3)      \n    (URI(CONCAT('https://science-in-context.wisski.cloud/entity/', STRUUID())) as ?id4)      \n    WHERE\n    {\n        SELECT ?place (MIN(?label) AS ?label)\n            (STRDT(MIN(?geoCoordinates),ogc:wktLiteral) AS ?geoCoordinates) \n        WHERE {\n            {\n                SERVICE <https://ag16gm9pr0meths2.allegrograph.cloud/repositories/astronomers>\n                {\n                GRAPH <https://github.com/Sciences-historiques-numeriques/astronomers/blob/main/graphs/wikidata-imported-data.md>\n                    {\n                    ?place rdf:type sdh:C13;\n                            rdfs:label  ?placeLabel;\n                            wdt:P625 ?coordinates.\n                    \n                    }\n                }    \n            }\n            BIND(STR(?placeLabel) as ?label)\n            BIND(REPLACE(?coordinates, 'Point', 'POINT') as ?geoCoordinates)\n\n        }\n        GROUP BY ?place\n        LIMIT 5\n    }\n}\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX sdh: <https://sdhss.org/ontology/core/>\nPREFIX ogc: <http://www.opengis.net/ont/geosparql#> \n\nINSERT {GRAPH <https://science-in-context.wisski.cloud/entity/>\n        {?id1 rdf:type sdh:C13;\n                owl:sameAs ?place;\n                crm:P1_is_identified_by ?id2.    \n           ?id2 rdf:type crm:E41_Appellation;\n                crm:P3_has_note ?label.\n           ?id3 rdf:type crm:E93_Presence;\n                crm:P167_was_within ?id4;\n                crm:P166_was_a_presence_of ?id1.\n           ?id4 rdf:type crm:E53_Place;\n                crm:P168_place_is_defined_by ?geoCoordinates\n                }\n    }       \nWHERE {\n    SELECT ?place ?label ?geoCoordinates\n    (URI(CONCAT('https://science-in-context.wisski.cloud/entity/', STRUUID())) as ?id1) \n    (URI(CONCAT('https://science-in-context.wisski.cloud/entity/', STRUUID())) as ?id2)\n    (URI(CONCAT('https://science-in-context.wisski.cloud/entity/', STRUUID())) as ?id3)      \n    (URI(CONCAT('https://science-in-context.wisski.cloud/entity/', STRUUID())) as ?id4)      \n    WHERE\n    {\n        SELECT ?place (MIN(?label) AS ?label) \n                (MIN(?geoCoordinates) AS ?geoCoordinates) \n                (STRDT(MIN(?geoCoordinates),ogc:wktLiteral) AS ?geoCoordinates) \n        WHERE {\n            {\n                SERVICE <https://ag16gm9pr0meths2.allegrograph.cloud/repositories/astronomers>\n                {\n                GRAPH <https://github.com/Sciences-historiques-numeriques/astronomers/blob/main/graphs/wikidata-imported-data.md>\n                    {\n                    ?place rdf:type sdh:C13;\n                            rdfs:label  ?placeLabel;\n                            wdt:P625 ?coordinates.\n                    \n                    }\n                }    \n            }\n            BIND(STR(?placeLabel) as ?label)\n            BIND(REPLACE(?coordinates, 'Point', 'POINT') as ?geoCoordinates)\n\n        }\n        GROUP BY ?place\n    }\n}\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "### Values corrected after first insert\n\nprefix crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nprefix geo: <http://www.opengis.net/ont/geosparql#>\nPREFIX ogc: <http://www.opengis.net/ont/geosparql#> \n\nDELETE { \n    GRAPH <https://science-in-context.wisski.cloud/entity/>\n    {?s crm:P168_place_is_defined_by ?geo.}\n\t}\nINSERT {\n    GRAPH <https://science-in-context.wisski.cloud/entity/>\n    {?s crm:P168_place_is_defined_by ?out.}\n}\nWHERE {\n    GRAPH <https://science-in-context.wisski.cloud/entity/>\n    {?s crm:P168_place_is_defined_by ?geo .\n       BIND(STRDT(?geo,geo:wktLiteral) as ?out)\n        \n    }\n} \n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "### Property URI corrected after insert\n\nprefix crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nprefix geo: <http://www.opengis.net/ont/geosparql#>\nPREFIX ogc: <http://www.opengis.net/ont/geosparql#> \n\nDELETE { \n    GRAPH <https://science-in-context.wisski.cloud/entity/>\n    {?s crm:P167_was_at ?geo.}\n\t}\nINSERT {\n    GRAPH <https://science-in-context.wisski.cloud/entity/>\n    {?s crm:P167_was_within ?geo.}\n}\nWHERE {\n    GRAPH <https://science-in-context.wisski.cloud/entity/>\n    {?s crm:P167_was_at ?geo .}\n} \n\n",
+    "metadata": {}
+  }
+]

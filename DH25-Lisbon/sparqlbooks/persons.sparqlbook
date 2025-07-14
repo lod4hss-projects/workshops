@@ -1,0 +1,122 @@
+[
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/\n\n<https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>\n\n<https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/wikidata-imported-data.md>\n      ",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "### Content of the wikidata graph \n\nselect ?s  ?p ?o\nwhere {\n    {\n        GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/wikidata-imported-data.md>\n        {\n            ?s  ?p ?o.            \n        }\n    }\n}\nlimit 10",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\n\nselect * where {\n    {\n        GRAPH <https://github.com/Sciences-historiques-numeriques/astronomers/blob/main/graphs/wikidata-imported-data.md>{\n            ?s  a  wd:Q5;\n                rdfs:label ?label.\n            \n            }\n    \n  }\n}\nlimit 10\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "SELECT (URI(CONCAT('https://science-in-context.wisski.cloud/entity/', STRUUID())) as ?id1) {}",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX base: <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/>\n\nCONSTRUCT {?id1 rdf:type crm:E21;\n                rdfs:label ?sLabel;\n                owl:sameAs ?s.\n                }\nWHERE {\n    {SELECT DISTINCT ?s ?sLabel\n    (URI(CONCAT('https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/', STRUUID())) as ?id1)\n      WHERE {\n        SELECT DISTINCT ?s ?sLabel\n        WHERE {\n        GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/wikidata-imported-data.md>\n        {\n            ?s  a  wd:Q5;\n            rdfs:label ?sLabel.\n                }\n            }    \n    }\n    OFFSET 50\n    LIMIT 3\n    }\n}\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX base: <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/>\n\n\nINSERT {GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>\n    \t{?id1 rdf:type crm:E21;\n                rdfs:label ?sLabel;\n                owl:sameAs ?s.\n                }\n}\nWHERE {\n    {SELECT DISTINCT ?s ?sLabel\n    (URI(CONCAT('https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/', STRUUID())) as ?id1)\n      WHERE {\n        SELECT DISTINCT ?s ?sLabel\n        WHERE {\n        GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/wikidata-imported-data.md>\n        {\n            ?s  a  wd:Q5;\n            rdfs:label ?sLabel.\n                }\n            }    \n    }\n   }\n}\n\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nselect ?s ?p ?o where {\n    {\n        GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>\n            {\n                ?s  a crm:E21;\n                    ?p ?o.\n            }\n    }\n}\nlimit 10",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "#### Create the persons's appellations\n\n    NOT YET IMPLEMENTED !",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\n\nCONSTRUCT {?s crm:P1_is_identified_by ?id1.    \n           ?id1 rdf:type crm:E41_Appellation;\n                crm:P3_has_note ?label.\n                }\nWHERE { \n        SELECT ?s ?label \n        (URI(CONCAT('https://science-in-context.wisski.cloud/entity/', STRUUID())) as ?id1)     \n        WHERE \n        {\n            SELECT DISTINCT ?s ?label\n            WHERE {\n\n                {\n                    GRAPH <https://science-in-context.wisski.cloud/entity/>{        \n                        ?s a crm:E21_Person;\n                            owl:sameAs ?wdUri}\n                }\n\n                SERVICE <https://ag16gm9pr0meths2.allegrograph.cloud/repositories/astronomers>{\n                GRAPH <https://github.com/Sciences-historiques-numeriques/astronomers/blob/main/graphs/wikidata-imported-data.md>{\n                    ?wdUri rdfs:label ?wdLabel.\n                \n                    }\n                }\n                BIND(STR(?wdLabel) as ?label) \n            }\n         }\n           \n        LIMIT 10\n    \n}\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nINSERT {GRAPH <https://science-in-context.wisski.cloud/entity/>\n\t{?s crm:P1_is_identified_by ?id1.    \n           ?id1 rdf:type crm:E41_Appellation;\n                crm:P3_has_note ?label.\n                }\n}\nWHERE { \n        SELECT ?s ?label \n        (URI(CONCAT('https://science-in-context.wisski.cloud/entity/', STRUUID())) as ?id1)     \n        WHERE \n        {\n            SELECT DISTINCT ?s ?label\n            WHERE {\n\n                {\n                    GRAPH <https://science-in-context.wisski.cloud/entity/>{        \n                        ?s a crm:E21_Person;\n                            owl:sameAs ?wdUri}\n                }\n\n                SERVICE <https://ag16gm9pr0meths2.allegrograph.cloud/repositories/astronomers>{\n                GRAPH <https://github.com/Sciences-historiques-numeriques/astronomers/blob/main/graphs/wikidata-imported-data.md>{\n                    ?wdUri rdfs:label ?wdLabel.\n                \n                    }\n                }\n                BIND(STR(?wdLabel) as ?label) \n            }\n         }\n}\n\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "### Add birth and birth date",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nSELECT ?pUri ?birthDate\n    (URI(CONCAT('https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/', STRUUID())) as ?id1) \n    (URI(CONCAT('https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/', STRUUID())) as ?id2) \n     WHERE {\n        GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/wikidata-imported-data.md>\n        {\n            ?s  a  wd:Q5;\n                wdt:P569 ?birthDate.\n            }\n        \n        GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>\n        {\n            ?pUri owl:sameAs ?s.    \n            }\n     }    \n    ORDER BY ?pUri\n    LIMIT 10",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX sdh-short: <https://sdhss.org/ontology/shortcuts/>\n\n\nCONSTRUCT {?id1 crm:P98 ?pUri;\n                rdf:type crm:E67;\n                sdh-short:P1 ?birthDate\n                }\nWHERE {\n    {\n    SELECT DISTINCT ?pUri (MAX(?birthDate) as ?birthDate)\n    (URI(CONCAT('https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/', STRUUID())) as ?id1) \n    WHERE {\n        GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/wikidata-imported-data.md>\n        {\n            ?s  a  wd:Q5;\n                wdt:P569 ?birthDate.\n            }\n\n            GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>\n            {        \n                ?pUri owl:sameAs ?s.    \n            }    \n    }\n    GROUP BY ?pUri\n    ORDER BY ?pUri\n    LIMIT 5\n\n    }\n}\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "### Creates births and their (shortcut) dates \n\nPREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX sdh-short: <https://sdhss.org/ontology/shortcuts/>\n\nINSERT {GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>\n            {?id1 crm:P98 ?pUri;\n                rdf:type crm:E67;\n                sdh-short:P1 ?birthDate\n                }\n        }\nWHERE {\n    {\n    SELECT DISTINCT ?pUri (MAX(?birthDate) as ?birthDate)\n    (URI(CONCAT('https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/', STRUUID())) as ?id1) \n    WHERE {\n        GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/wikidata-imported-data.md>\n        {\n            ?s  a  wd:Q5;\n                wdt:P569 ?birthDate.\n            }\n\n            GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>\n            {        \n                ?pUri owl:sameAs ?s.    \n            }    \n    }\n    GROUP BY ?pUri\n    ORDER BY ?pUri\n    }\n}\n\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "### Nombre de naissances\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX sdh-short: <https://sdhss.org/ontology/shortcuts/>\n\nSELECT (COUNT(*) as ?n)\nWHERE {\n            GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>\n            {        \n                ?birth a crm:E67.    \n            }    \n}",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "### Get birth places\n\nWe add places to existings births, where dates are available. \n\nIt is therefore possible that we miss some birth places without date, although in fact persons without birth date shouldn't be present",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX sic:  <https://science-in-context.wisski.cloud/entity/>\n\nSELECT ?pUri ?birth ?birthPlace\n     WHERE {\n        SERVICE <https://ag16gm9pr0meths2.allegrograph.cloud/repositories/astronomers>{\n        GRAPH <https://github.com/Sciences-historiques-numeriques/astronomers/blob/main/graphs/wikidata-imported-data.md>{\n            ?s  a  wd:Q5;\n                wdt:P19 ?wdBirthPlace.\n            }\n        }\n        GRAPH <https://science-in-context.wisski.cloud/entity/>{\n            ?pUri owl:sameAs ?s;\n                 ^crm:P98_brought_into_life ?birth.\n            ?birthPlace owl:sameAs ?wdBirthPlace.     \n            }    \n    }\n    ORDER BY ?pUri\n    LIMIT 10",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX sic:  <https://science-in-context.wisski.cloud/entity/>\nPREFIX sdh:  <https://sdhss.org/ontology/core/>\n\nCONSTRUCT {?birth crm:P8_took_place_on_or_within ?birthPlace.\n                }\nwhere {\n    {\n    SELECT ?pUri ?birth ?birthPlace\n     WHERE {\n        SERVICE <https://ag16gm9pr0meths2.allegrograph.cloud/repositories/astronomers>{\n        GRAPH <https://github.com/Sciences-historiques-numeriques/astronomers/blob/main/graphs/wikidata-imported-data.md>{\n            ?s  a  wd:Q5;\n                wdt:P19 ?wdBirthPlace.\n            }\n        }\n        GRAPH <https://science-in-context.wisski.cloud/entity/>{\n            ?pUri owl:sameAs ?s;\n                 ^crm:P98_brought_into_life ?birth.\n            ?birthPlace owl:sameAs ?wdBirthPlace.     \n            }    \n    }\n    ORDER BY ?pUri\n    LIMIT 10\n    }\n}\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX sic:  <https://science-in-context.wisski.cloud/entity/>\nPREFIX sdh:  <https://sdhss.org/ontology/core/>\n\nINSERT {GRAPH <https://science-in-context.wisski.cloud/entity/>\n {?birth crm:P8_took_place_on_or_within ?birthPlace.\n                }\n}\nWHERE {\n    {\n    SELECT ?pUri ?birth ?birthPlace\n     WHERE {\n        SERVICE <https://ag16gm9pr0meths2.allegrograph.cloud/repositories/astronomers>{\n        GRAPH <https://github.com/Sciences-historiques-numeriques/astronomers/blob/main/graphs/wikidata-imported-data.md>{\n            ?s  a  wd:Q5;\n                wdt:P19 ?wdBirthPlace.\n            }\n        }\n        GRAPH <https://science-in-context.wisski.cloud/entity/>{\n            ?pUri owl:sameAs ?s;\n                 ^crm:P98_brought_into_life ?birth.\n            ?birthPlace owl:sameAs ?wdBirthPlace.     \n            }    \n        }\n    }\n}\n\n",
+    "metadata": {}
+  }
+]

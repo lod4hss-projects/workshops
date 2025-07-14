@@ -1,8 +1,8 @@
 @prefix sdh-shacl: <https://sdhss.org/shacl/profiles/>. 
-@prefix sh: <http://www.w3.org/ns/shacl>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema>.
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns>.
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix sdh-short: <https://sdhss.org/ontology/shortcuts/>.
 @prefix sdh-slc: <https://sdhss.org/ontology/social-life/>.
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
@@ -23,7 +23,7 @@ sdh-shacl:crm_E74_Shape a sh:NodeShape ;
         sh:property [
             sh:path rdfs:comment ;
             sh:name "Description";
-            sh:datatype rdf:HTML;
+            sh:datatype xsd:string;
             sh:order 2; 
             sh:minCount 1;
             ];
@@ -46,7 +46,7 @@ sdh-shacl:sdh-slc_C2_Shape a sh:NodeShape ;
         sh:property [
             sh:path rdfs:comment ;
             sh:name "Description";
-            sh:datatype rdf:HTML;
+            sh:datatype xsd:string;
             sh:order 2; 
             sh:minCount 1;
             ];
@@ -69,7 +69,7 @@ sdh-shacl:crm_E21_Shape a sh:NodeShape ;
         sh:property [
             sh:path rdfs:comment ;
             sh:name "Description";
-            sh:datatype rdf:HTML;
+            sh:datatype xsd:string;
             sh:order 2; 
             sh:minCount 1;
             ];
@@ -91,7 +91,7 @@ sdh-shacl:sdh-slc_C5_Shape a sh:NodeShape ;
         sh:property [
             sh:path rdfs:comment ;
             sh:name "Description";
-            sh:datatype rdf:HTML;
+            sh:datatype xsd:string;
             sh:order 2; 
             ];
 
@@ -127,7 +127,6 @@ sdh-shacl:sdh-slc_C5_Shape a sh:NodeShape ;
             sh:path sdh-slc:P63 ;
             sh:name "has quality during membership" ;
             sh:class sdh-slc:C2 ;
-            sh:maxCount -1 ;
         ];
     
         sh:property [
@@ -141,7 +140,6 @@ sdh-shacl:sdh-slc_C5_Shape a sh:NodeShape ;
             sh:path sdh-slc:P63 ;
             sh:name "has quality during membership" ;
             sh:class sdh-slc:C12 ;
-            sh:maxCount -1 ;
         ];
     .
 
@@ -161,7 +159,7 @@ sdh-shacl:sdh-slc_C6_Shape a sh:NodeShape ;
         sh:property [
             sh:path rdfs:comment ;
             sh:name "Description";
-            sh:datatype rdf:HTML;
+            sh:datatype xsd:string;
             sh:order 2; 
             sh:minCount 1;
             ];
@@ -184,7 +182,7 @@ sdh-shacl:sdh-slc_C12_Shape a sh:NodeShape ;
         sh:property [
             sh:path rdfs:comment ;
             sh:name "Description";
-            sh:datatype rdf:HTML;
+            sh:datatype xsd:string;
             sh:order 2; 
             sh:minCount 1;
             ];

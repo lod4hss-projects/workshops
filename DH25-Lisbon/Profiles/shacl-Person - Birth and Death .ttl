@@ -1,8 +1,8 @@
 @prefix sdh-shacl: <https://sdhss.org/shacl/profiles/>. 
-@prefix sh: <http://www.w3.org/ns/shacl>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema>.
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns>.
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema>.
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix sdh-short: <https://sdhss.org/ontology/shortcuts/>.
 @prefix sdh: <https://sdhss.org/ontology/core/>.
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
@@ -22,7 +22,7 @@ sdh-shacl:crm_E67_Shape a sh:NodeShape ;
         sh:property [
             sh:path rdfs:comment ;
             sh:name "Description";
-            sh:datatype rdf:HTML;
+            sh:datatype xsd:string;
             sh:order 2; 
             ];
 
@@ -37,21 +37,18 @@ sdh-shacl:crm_E67_Shape a sh:NodeShape ;
             sh:path crm:P98 ;
             sh:name "brought into life" ;
             sh:class crm:E21 ;
-            sh:maxCount -1 ;
         ];
     
         sh:property [
             sh:path sdh:P6 ;
             sh:name "took place at" ;
             sh:class sdh:C13 ;
-            sh:maxCount -1 ;
         ];
     
         sh:property [
             sh:path crm:P8 ;
             sh:name "took place on or within" ;
             sh:class sdh:C17 ;
-            sh:maxCount -1 ;
         ];
     .
 
@@ -71,7 +68,7 @@ sdh-shacl:crm_E21_Shape a sh:NodeShape ;
         sh:property [
             sh:path rdfs:comment ;
             sh:name "Description";
-            sh:datatype rdf:HTML;
+            sh:datatype xsd:string;
             sh:order 2; 
             sh:minCount 1;
             ];
@@ -94,7 +91,7 @@ sdh-shacl:sdh_C17_Shape a sh:NodeShape ;
         sh:property [
             sh:path rdfs:comment ;
             sh:name "Description";
-            sh:datatype rdf:HTML;
+            sh:datatype xsd:string;
             sh:order 2; 
             sh:minCount 1;
             ];
@@ -117,7 +114,7 @@ sdh-shacl:sdh_C13_Shape a sh:NodeShape ;
         sh:property [
             sh:path rdfs:comment ;
             sh:name "Description";
-            sh:datatype rdf:HTML;
+            sh:datatype xsd:string;
             sh:order 2; 
             sh:minCount 1;
             ];
@@ -139,7 +136,7 @@ sdh-shacl:crm_E69_Shape a sh:NodeShape ;
         sh:property [
             sh:path rdfs:comment ;
             sh:name "Description";
-            sh:datatype rdf:HTML;
+            sh:datatype xsd:string;
             sh:order 2; 
             ];
 
@@ -154,20 +151,17 @@ sdh-shacl:crm_E69_Shape a sh:NodeShape ;
             sh:path crm:P100 ;
             sh:name "was death of" ;
             sh:class crm:E21 ;
-            sh:maxCount -1 ;
         ];
     
         sh:property [
             sh:path sdh:P6 ;
             sh:name "took place at" ;
             sh:class sdh:C13 ;
-            sh:maxCount -1 ;
         ];
     
         sh:property [
             sh:path crm:P8 ;
             sh:name "took place on or within" ;
             sh:class sdh:C17 ;
-            sh:maxCount -1 ;
         ];
     .

@@ -1,0 +1,98 @@
+[
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "## Add groups (organisations)",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\n\nSELECT DISTINCT ?s ?label where {\n    {\n        GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/wikidata-imported-data.md>\n        {\n            ?s  a  crm:E74_Group;\n                rdfs:label ?wdLabel.\n            \n            }\n    }\n    BIND(STR(?wdLabel) as ?label)\n}\nlimit 5\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "SELECT (URI(CONCAT('https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/', STRUUID())) as ?id1) {}",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nCONSTRUCT {?id1 rdf:type crm:E74_Group;\n                owl:sameAs ?s;\n                rdfs:label ?wdLabel.\n                }\nwhere {\n    SELECT ?s ?wdLabel\n    (URI(CONCAT('https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/', STRUUID())) as ?id1) \n    WHERE\n    {SELECT DISTINCT ?s ?wdLabel\n     WHERE {\n        GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/wikidata-imported-data.md>\n        {\n            ?s  a  crm:E74;\n                rdfs:label ?wdLabel.\n            \n            }\n    }\n    LIMIT 5\n    }\n}\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/> \nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nINSERT {GRAPH <https://science-in-context.wisski.cloud/entity/>\n   \t\t {?id1 rdf:type crm:E74_Group;\n                owl:sameAs ?s.\n                }\n\t\t\t}    \nwhere {\n    SELECT ?s\n    (URI(CONCAT('https://science-in-context.wisski.cloud/entity/', STRUUID())) as ?id1) \n    WHERE\n    {SELECT DISTINCT ?s  \n     WHERE {\n        SERVICE <https://ag16gm9pr0meths2.allegrograph.cloud/repositories/astronomers>{\n        GRAPH <https://github.com/Sciences-historiques-numeriques/astronomers/blob/main/graphs/wikidata-imported-data.md>{\n            ?s  a  crm:E74_Group.\n                }\n            }\n    }\n\n    }\n}\n\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "### Get group labels",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Attention dans les données il y a une erreur dans le label à : \"Sewanee: The University of the South\"\n\nLe prend donc pour un URI !\n\n\nhttp://www.wikidata.org/entity/Q7458159\n\n\nManquent les double-quotes dans le RDF de Wikidata.\n\n\nTrouvé grâce à:\n```\nORDER BY ?s\nOFFSET 7545\n```\n\n\n**Correction**: j'ajoute un BIND / STR supplémentaire\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\n\nCONSTRUCT {?s crm:P1_is_identified_by ?id1.    \n           ?id1 rdf:type crm:E41_Appellation;\n                crm:P3_has_note ?label.\n                }\nWHERE { \n        SELECT ?s ?label \n        (URI(CONCAT('https://science-in-context.wisski.cloud/entity/', STRUUID())) as ?id1)     \n        WHERE \n        {\n            SELECT DISTINCT ?s ?label\n            WHERE {\n\n                {\n                    GRAPH <https://science-in-context.wisski.cloud/entity/>{        \n                        ?s a crm:E74_Group;\n                            owl:sameAs ?wdUri}\n                }\n\n                SERVICE <https://ag16gm9pr0meths2.allegrograph.cloud/repositories/astronomers>{\n                GRAPH <https://github.com/Sciences-historiques-numeriques/astronomers/blob/main/graphs/wikidata-imported-data.md>{\n                    ?wdUri rdfs:label ?wdLabel.\n                \n                    }\n                }\n                BIND(STR(?wdLabel) as ?label) \n            }\n         }\n           \n        LIMIT 3\n    \n}\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/> \nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nINSERT {GRAPH <https://science-in-context.wisski.cloud/entity/>\n   \t\t{?s crm:P1_is_identified_by ?id1.    \n           ?id1 rdf:type crm:E41_Appellation;\n                crm:P3_has_note ?label.\n                }\n}\nWHERE { \n        SELECT ?s ?label \n        (URI(CONCAT('https://science-in-context.wisski.cloud/entity/', STRUUID())) as ?id1)     \n        WHERE \n        {\n            SELECT DISTINCT ?s ?label\n            WHERE {\n\n                {\n                    GRAPH <https://science-in-context.wisski.cloud/entity/>{        \n                        ?s a crm:E74_Group;\n                            owl:sameAs ?wdUri}\n                }\n\n                SERVICE <https://ag16gm9pr0meths2.allegrograph.cloud/repositories/astronomers>{\n                GRAPH <https://github.com/Sciences-historiques-numeriques/astronomers/blob/main/graphs/wikidata-imported-data.md>{\n                    ?wdUri rdfs:label ?wdLabel.\n                \n                    }\n                }\n                BIND(STR(?wdLabel) as ?label) \n            }\n         }\n}",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\n\nSELECT ?s ?p ?o\nWHERE { GRAPH <https://science-in-context.wisski.cloud/entity/>\n{\n?s rdf:type crm:E74_Group;\n   ?p ?o.\n}\n}\nLIMIT 10\n\t\n",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "### Archives: correction données en trop",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\ndelete {?s ?p ?o}\nwhere {\n    GRAPH <https://science-in-context.wisski.cloud/entity/>{\n    ?s owl:sameAs <http://www.wikidata.org/entity/Q7458159>;\n    ?p ?o.\n    # ?s crm:P1_is_identified_by ?label\n    MINUS {?s crm:P1_is_identified_by ?label}\n} }\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\ndelete {?s ?p ?o}\nwhere {\n    GRAPH <https://science-in-context.wisski.cloud/>{\n    ?s ?p ?o.\n    # ?s crm:P1_is_identified_by ?label\n    MINUS {?s crm:P1_is_identified_by ?label}\n} }\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\ndelete {?s ?p ?o}\nwhere {\n    GRAPH <https://science-in-context.wisski.cloud/>{\n    ?s ?p ?o;\n        rdf:type crm:E74_Group;\n    crm:P1_is_identified_by ?app.\n        \n    MINUS {?app ?p1 ?o1.}\n} }\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "",
+    "metadata": {}
+  }
+]
