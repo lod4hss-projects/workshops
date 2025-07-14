@@ -1,0 +1,205 @@
+@prefix sdh-shacl: <https://sdhss.org/shacl/profiles/>. 
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sdh-short: <https://sdhss.org/ontology/shortcuts/>.
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
+@prefix crm-sup: <https://sdhss.org/ontology/crm-supplement/>.
+@prefix sdh-info: <https://sdhss.org/ontology/sources-information-metadata/>.
+@prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
+
+sdh-shacl:crm-sup_C8_Shape a sh:NodeShape ;
+        sh:targetClass crm-sup:C8 ;
+        sh:name "Type of manifestation product type";
+    
+        sh:property [
+            sh:path rdfs:label ;
+            sh:name "Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path rdfs:comment ;
+            sh:name "Description";
+            sh:datatype xsd:string;
+            sh:order 2; 
+            sh:minCount 1;
+            ];
+    
+    .
+
+sdh-shacl:crm_E74_Shape a sh:NodeShape ;
+        sh:targetClass crm:E74 ;
+        sh:name "Group";
+    
+        sh:property [
+            sh:path rdfs:label ;
+            sh:name "Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path rdfs:comment ;
+            sh:name "Description";
+            sh:datatype xsd:string;
+            sh:order 2; 
+            sh:minCount 1;
+            ];
+    
+    .
+
+sdh-shacl:sdh-info_C5_Shape a sh:NodeShape ;
+        sh:targetClass sdh-info:C5 ;
+        sh:name "Bibliographic Citation";
+    
+        sh:property [
+            sh:path rdfs:label ;
+            sh:name "Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path rdfs:comment ;
+            sh:name "Description";
+            sh:datatype xsd:string;
+            sh:order 2; 
+            sh:minCount 1;
+            ];
+    
+    .
+
+sdh-shacl:frbroo_F3_Shape a sh:NodeShape ;
+        sh:targetClass frbroo:F3 ;
+        sh:name "Manifestation Product Type";
+    
+        sh:property [
+            sh:path rdfs:label ;
+            sh:name "Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path rdfs:comment ;
+            sh:name "Description";
+            sh:datatype xsd:string;
+            sh:order 2; 
+            sh:minCount 1;
+            ];
+    
+        sh:property [
+            sh:path crm:P1 ;
+            sh:name "is identified by" ;
+            sh:class sdh-info:C5 ;
+        ];
+    .
+
+sdh-shacl:frbroo_F2_Shape a sh:NodeShape ;
+        sh:targetClass frbroo:F2 ;
+        sh:name "Expression";
+    
+        sh:property [
+            sh:path rdfs:label ;
+            sh:name "Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path rdfs:comment ;
+            sh:name "Description";
+            sh:datatype xsd:string;
+            sh:order 2; 
+            sh:minCount 1;
+            ];
+    
+    .
+
+sdh-shacl:crm_E21_Shape a sh:NodeShape ;
+        sh:targetClass crm:E21 ;
+        sh:name "Person";
+    
+        sh:property [
+            sh:path rdfs:label ;
+            sh:name "Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path rdfs:comment ;
+            sh:name "Description";
+            sh:datatype xsd:string;
+            sh:order 2; 
+            sh:minCount 1;
+            ];
+    
+    .
+
+sdh-shacl:sdh-info_C1_Shape a sh:NodeShape ;
+        sh:targetClass sdh-info:C1 ;
+        sh:name "Expression Publication Event";
+    
+        sh:property [
+            sh:path rdfs:label ;
+            sh:name "Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path rdfs:comment ;
+            sh:name "Description";
+            sh:datatype xsd:string;
+            sh:order 2; 
+            ];
+
+        sh:property [
+            sh:path sdh-short:P1 ;
+            sh:name "Standard Date-Time";
+            sh:datatype xsd:string;
+            sh:order 3;
+            ];
+    
+        sh:property [
+            sh:path sdh-info:P3 ;
+            sh:name "published the work of" ;
+            sh:class crm:E21 ;
+        ];
+    
+        sh:property [
+            sh:path sdh-info:P3 ;
+            sh:name "published the work of" ;
+            sh:class crm:E74 ;
+        ];
+    
+        sh:property [
+            sh:path sdh-info:P1 ;
+            sh:name "used specific expression" ;
+            sh:class frbroo:F2 ;
+        ];
+    
+        sh:property [
+            sh:path sdh-info:P2 ;
+            sh:name "created manifestation" ;
+            sh:class frbroo:F3 ;
+            sh:maxCount 1 ;
+        ];
+    .

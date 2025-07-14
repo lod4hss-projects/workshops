@@ -1,0 +1,50 @@
+[
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\n\nSELECT  ?class ?cLabel (COUNT(*) as ?n)\nWHERE {\n    GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc.md>\n    {\n    ?s a ?class.\n    OPTIONAL {?class rdfs:label ?cLabel}\n    }\n}\nGROUP BY ?class ?cLabel",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "http://purl.org/ontology/bibo/Book",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "### Count properties' occurrencies in the repository\n\nPREFIX franzOption_defaultDatasetBehavior: <franz:rdf>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\n\nSELECT ?p ?pLabel (COUNT(*) AS ?n)\nWHERE {\n    GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc.md>\n    {\n        ?s ?p ?o.\n        OPTIONAL {?p rdfs:label ?pLabel}\n    }\n}\nGROUP BY ?p ?pLabel\nORDER BY DESC(?n)",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\n\nselect ?s  ?o\nwhere {\n    {\n        GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/wikidata-imported-data.md>\n        {\n            ?s wdt:P269 ?o.\n        }\n    }\n}\nlimit 10",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\n\nselect ?pUri  ?bibliogRef ?date ?book \nwhere {\n    {\n        GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/wikidata-imported-data.md>\n        {\n            ?s wdt:P269 ?idref.\n        }\n        GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>\n        {\n            ?pUri owl:sameAs ?s.\n        }\n        GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc.md>\n        {  ?book <http://id.loc.gov/vocabulary/relators/aut> ?idref;\n                a <http://purl.org/ontology/bibo/Book>;\n                <http://purl.org/dc/terms/bibliographicCitation> ?bibliogRef;\n                <http://purl.org/dc/elements/1.1/date> ?date\n        }\n    \n    BIND(URI(CONCAT('https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/', STRUUID())) as ?id1) \n\n    }\n}\nlimit 10",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX sdh-short: <https://sdhss.org/ontology/shortcuts/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX crm-sup: <https://sdhss.org/ontology/crm-supplement/>\nPREFIX sdh-info: <https://sdhss.org/ontology/sources-information-metadata/>\nPREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>\n\nCONSTRUCT { ?id1 a sdh-info:C1;\n                sdh-short:P1 ?date;\n                sdh-info:P3 ?pUri;\n                sdh-info:P2 ?id2.\n            ?id2 owl:sameAs ?book;\n                  crm:P1 ?id3.\n            ?id3 a sdh-info:C5;\n                  rdfs:label ?bibliogRef.\n}\nwhere {\n    SELECT \n        ?pUri  ?bibliogRef ?date ?book\n        (URI(CONCAT('https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/', STRUUID())) as ?id1) \n        (URI(CONCAT('https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/', STRUUID())) as ?id2) \n        (URI(CONCAT('https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/', STRUUID())) as ?id3) \n    WHERE         \n        {\n            SELECT DISTINCT ?pUri  ?bibliogRef ?date ?book\n            WHERE {\n                {\n                    GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/wikidata-imported-data.md>\n                    {\n                        ?s wdt:P269 ?idref.\n                    }\n                    GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>\n                    {\n                        ?pUri owl:sameAs ?s.\n                    }\n                    GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc.md>\n                    {  ?book <http://id.loc.gov/vocabulary/relators/aut> ?idref;\n                            a <http://purl.org/ontology/bibo/Book>;\n                            <http://purl.org/dc/terms/bibliographicCitation> ?bibliogRef;\n                            <http://purl.org/dc/elements/1.1/date> ?date\n                    }\n                        \n                }\n            }\n            OFFSET 100\n            LIMIT 3\n        }    \n}\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX sdh-short: <https://sdhss.org/ontology/shortcuts/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX crm-sup: <https://sdhss.org/ontology/crm-supplement/>\nPREFIX sdh-info: <https://sdhss.org/ontology/sources-information-metadata/>\nPREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>\n\nINSERT { \n    GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>\n    { ?id1 a sdh-info:C1;\n                sdh-short:P1 ?date;\n                sdh-info:P3 ?pUri;\n                sdh-info:P2 ?id2.\n            ?id2 owl:sameAs ?book;\n                  crm:P1 ?id3.\n            ?id3 a sdh-info:C5;\n                  rdfs:label ?bibliogRef.\n    }              \n}\nwhere {\n    SELECT \n        ?pUri  ?bibliogRef ?date ?book\n        (URI(CONCAT('https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/', STRUUID())) as ?id1) \n        (URI(CONCAT('https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/', STRUUID())) as ?id2) \n        (URI(CONCAT('https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/', STRUUID())) as ?id3) \n    WHERE         \n        {\n            SELECT DISTINCT ?pUri  ?bibliogRef ?date ?book\n            WHERE {\n                {\n                    GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/wikidata-imported-data.md>\n                    {\n                        ?s wdt:P269 ?idref.\n                    }\n                    GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>\n                    {\n                        ?pUri owl:sameAs ?s.\n                    }\n                    GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc.md>\n                    {  ?book <http://id.loc.gov/vocabulary/relators/aut> ?idref;\n                            a <http://purl.org/ontology/bibo/Book>;\n                            <http://purl.org/dc/terms/bibliographicCitation> ?bibliogRef;\n                            <http://purl.org/dc/elements/1.1/date> ?date\n                    }\n                }\n            }\n        }    \n}\n",
+    "metadata": {}
+  }
+]

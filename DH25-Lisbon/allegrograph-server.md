@@ -22,6 +22,6 @@ Base URI: https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/re
 * SHACL: https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-shacl.md
 
 
-### IdRef
+### IdRef - SUDOC
 
-* Data: https://github.com/Sciences-historiques-numeriques/astronomers/blob/main/graphs/idref.md
+* Data: https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc.md 

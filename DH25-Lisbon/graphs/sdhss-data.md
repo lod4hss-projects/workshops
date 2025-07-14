@@ -1,1 +1,3 @@
-Data transformed etc.
+This graph comprises the data stemming from the Wikidata graph that were wrangled using the SDHSS application profiles that you find in the [Profiles directory](https://github.com/lod4hss-projects/workshops/tree/main/DH25-Lisbon/Profiles).
+
+The SPARQLbooks that document the data transformation are available in the [sparqlbooks directory](https://github.com/lod4hss-projects/workshops/tree/main/DH25-Lisbon/sparqlbooks)
