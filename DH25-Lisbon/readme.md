@@ -18,8 +18,8 @@ OntoME webiste: <https://ontome.net/>
 
 ### Introduction slides
 
-Soon available
+<https://docs.google.com/presentation/d/1lV1fTxXFHuHztdjTBrKMtHYkYsRlCbMEr6hCdgpI3v4/edit?usp=sharing>
 
 ### Hands-on
 
-Soon available
+<https://docs.google.com/presentation/d/1KXWRPxSj77eoNgpl9Z-xT_jT4lT2zNT-cn7yst2XIDs/edit?usp=sharing>
