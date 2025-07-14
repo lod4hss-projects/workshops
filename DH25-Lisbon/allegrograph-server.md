@@ -4,7 +4,7 @@
 
 https://ag15yl6uwsmzwvsd.allegrograph.cloud/repositories/science-history
 
-Base URI: http://my-projects.org/science-history/
+Base URI: https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/
 
 
 ## Bundles

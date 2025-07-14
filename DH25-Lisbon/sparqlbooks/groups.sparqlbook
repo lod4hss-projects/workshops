@@ -20,19 +20,31 @@
   {
     "kind": 2,
     "language": "sparql",
-    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nCONSTRUCT {?id1 rdf:type crm:E74_Group;\n                owl:sameAs ?s;\n                rdfs:label ?wdLabel.\n                }\nwhere {\n    SELECT ?s ?wdLabel\n    (URI(CONCAT('https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/', STRUUID())) as ?id1) \n    WHERE\n    {SELECT DISTINCT ?s ?wdLabel\n     WHERE {\n        GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/wikidata-imported-data.md>\n        {\n            ?s  a  crm:E74;\n                rdfs:label ?wdLabel.\n            \n            }\n    }\n    LIMIT 5\n    }\n}\n\n",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nCONSTRUCT {?id1 rdf:type crm:E74;\n                owl:sameAs ?s;\n                rdfs:label ?wdLabel.\n                }\nwhere {\n    SELECT ?s ?wdLabel\n    (URI(CONCAT('https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/', STRUUID())) as ?id1) \n    WHERE\n    {SELECT DISTINCT ?s ?wdLabel\n     WHERE {\n        GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/wikidata-imported-data.md>\n        {\n            ?s  a  crm:E74_Group;\n                rdfs:label ?wdLabel.\n            \n            }\n    }    \n    LIMIT 5\n    }\n}\n\n",
     "metadata": {}
   },
   {
     "kind": 2,
     "language": "sparql",
-    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/> \nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nINSERT {GRAPH <https://science-in-context.wisski.cloud/entity/>\n   \t\t {?id1 rdf:type crm:E74_Group;\n                owl:sameAs ?s.\n                }\n\t\t\t}    \nwhere {\n    SELECT ?s\n    (URI(CONCAT('https://science-in-context.wisski.cloud/entity/', STRUUID())) as ?id1) \n    WHERE\n    {SELECT DISTINCT ?s  \n     WHERE {\n        SERVICE <https://ag16gm9pr0meths2.allegrograph.cloud/repositories/astronomers>{\n        GRAPH <https://github.com/Sciences-historiques-numeriques/astronomers/blob/main/graphs/wikidata-imported-data.md>{\n            ?s  a  crm:E74_Group.\n                }\n            }\n    }\n\n    }\n}\n\n\n",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/> \nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nINSERT {GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>\n   \t\t {?id1 rdf:type crm:E74;\n                owl:sameAs ?s;\n                rdfs:label ?wdLabel.\n                }\n        }\nwhere {\n    SELECT ?s ?wdLabel\n    (URI(CONCAT('https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/', STRUUID())) as ?id1) \n    WHERE\n    {SELECT DISTINCT ?s ?wdLabel\n     WHERE {\n        GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/wikidata-imported-data.md>\n        {\n            ?s  a  crm:E74_Group;\n                rdfs:label ?wdLabel.\n            \n            }\n     }    \n    }\n}\n\n\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/> \nPREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nSELECT ?sLabel ?s ?swd \nwhere {\nGRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>\n   \t\t {?s rdf:type crm:E74;\n                owl:sameAs ?swd;\n                rdfs:label ?sLabel.\n                }\n        }\nOFFSET 500\nLIMIT 5        ",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "",
     "metadata": {}
   },
   {
     "kind": 1,
     "language": "markdown",
-    "value": "### Get group labels",
+    "value": "### Get group labels\n\n\n**NOT IMPLEMENTED YET !**",
     "metadata": {}
   },
   {
