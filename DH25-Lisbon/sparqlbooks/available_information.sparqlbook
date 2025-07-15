@@ -16,5 +16,17 @@
     "language": "sparql",
     "value": "### Count properties' occurrencies in the repository\n\nPREFIX franzOption_defaultDatasetBehavior: <franz:rdf>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\n\nSELECT ?p ?pLabel (COUNT(*) AS ?n)\nWHERE {\n    GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>\n{\n        ?s ?p ?o.\n        OPTIONAL {?p rdfs:label ?pLabel}\n    }\n}\nGROUP BY ?p ?pLabel\nORDER BY DESC(?n)",
     "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "## Specific aspects",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\n\nSELECT ?birth\nWHERE {\n    GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>\n   {\n    ?birth crm:P8\n   }\n}\nLIMIT 10",
+    "metadata": {}
   }
 ]
