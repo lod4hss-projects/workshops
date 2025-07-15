@@ -26,7 +26,13 @@
   {
     "kind": 2,
     "language": "sparql",
-    "value": "PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\n\nSELECT ?birth\nWHERE {\n    GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>\n   {\n    ?birth crm:P8\n   }\n}\nLIMIT 10",
+    "value": "PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\nPREFIX sdh: <https://sdhss.org/ontology/core/>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nSELECT DISTINCT (MAX(?placeLabel) as ?place) (COUNT(*) as ?number)\nWHERE {\n    GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>\n   {\n    ?birth sdh:P6 ?geoPlace.\n    ?geoPlace rdfs:label ?placeLabel\n   }\n}\nGROUP BY ?geoPlace ?placeLabel\nORDER BY DESC(?number)\nLIMIT 10",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "    PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>\n    PREFIX sdh: <https://sdhss.org/ontology/core/>\n    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n    PREFIX sdh-slc: <https://sdhss.org/ontology/social-life/>\n\n    SELECT  (MAX(?groupLabel) as ?group)  (COUNT(*) as ?number)\n    WHERE {\n        GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>\n    {\n        ?membership sdh-slc:P2 ?groupUri.\n        ?groupUri rdfs:label ?groupLabel\n    }\n    }\n    GROUP BY ?groupUri # ?groupLabel\n    ORDER BY DESC(?number)\n    LIMIT 20",
     "metadata": {}
   }
 ]

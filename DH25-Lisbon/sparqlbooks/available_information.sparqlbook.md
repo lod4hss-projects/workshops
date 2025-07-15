@@ -43,13 +43,37 @@ ORDER BY DESC(?n)
 
 ```sparql
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX sdh: <https://sdhss.org/ontology/core/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT ?birth
+SELECT DISTINCT (MAX(?placeLabel) as ?place) (COUNT(*) as ?number)
 WHERE {
     GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>
    {
-    ?birth crm:P8
+    ?birth sdh:P6 ?geoPlace.
+    ?geoPlace rdfs:label ?placeLabel
    }
 }
+GROUP BY ?geoPlace ?placeLabel
+ORDER BY DESC(?number)
 LIMIT 10
+```
+
+```sparql
+    PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+    PREFIX sdh: <https://sdhss.org/ontology/core/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX sdh-slc: <https://sdhss.org/ontology/social-life/>
+
+    SELECT  (MAX(?groupLabel) as ?group)  (COUNT(*) as ?number)
+    WHERE {
+        GRAPH <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/sdhss-data.md>
+    {
+        ?membership sdh-slc:P2 ?groupUri.
+        ?groupUri rdfs:label ?groupLabel
+    }
+    }
+    GROUP BY ?groupUri # ?groupLabel
+    ORDER BY DESC(?number)
+    LIMIT 20
 ```
