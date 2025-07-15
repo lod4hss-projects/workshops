@@ -1,1 +1,1 @@
-shacle etc.
+This graph comprises the SHACL profiles imported from OntoME, cf. the [Profiles directory](https://github.com/lod4hss-projects/workshops/tree/main/DH25-Lisbon/Profiles).

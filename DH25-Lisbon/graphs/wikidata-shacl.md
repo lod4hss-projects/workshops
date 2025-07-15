@@ -1,1 +1,1 @@
-This shacl ... (explain origin,etc)
+This graph comprises the SHACL profiles automatically produced by Allegrograph from the classes and properties available in the wikidata-imported-data graph and manually adapted. 

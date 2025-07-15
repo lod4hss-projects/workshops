@@ -1,0 +1,118 @@
+@prefix sdh-shacl: <https://sdhss.org/shacl/profiles/>. 
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sdh-short: <https://sdhss.org/ontology/shortcuts/>.
+@prefix sdh: <https://sdhss.org/ontology/core/>.
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
+
+sdh-shacl:crm_E94_Shape a sh:NodeShape ;
+        sh:targetClass crm:E94 ;
+        sh:name "Space Primitive";
+    
+        sh:property [
+            sh:path rdfs:label ;
+            sh:name "Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path rdfs:comment ;
+            sh:name "Description";
+            sh:datatype xsd:string;
+            sh:order 2; 
+            sh:minCount 1;
+            ];
+    
+    .
+
+sdh-shacl:crm_E93_Shape a sh:NodeShape ;
+        sh:targetClass crm:E93 ;
+        sh:name "Presence";
+    
+        sh:property [
+            sh:path rdfs:label ;
+            sh:name "Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path rdfs:comment ;
+            sh:name "Description";
+            sh:datatype xsd:string;
+            sh:order 2; 
+            sh:minCount 1;
+            ];
+    
+        sh:property [
+            sh:path crm:P167 ;
+            sh:name "was within" ;
+            sh:class crm:E53 ;
+            sh:maxCount 1 ;
+        ];
+    
+        sh:property [
+            sh:path crm:P166 ;
+            sh:name "was a presence of" ;
+            sh:class sdh:C13 ;
+            sh:maxCount 1 ;
+        ];
+    .
+
+sdh-shacl:sdh_C13_Shape a sh:NodeShape ;
+        sh:targetClass sdh:C13 ;
+        sh:name "Geographical Place";
+    
+        sh:property [
+            sh:path rdfs:label ;
+            sh:name "Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path rdfs:comment ;
+            sh:name "Description";
+            sh:datatype xsd:string;
+            sh:order 2; 
+            sh:minCount 1;
+            ];
+    
+    .
+
+sdh-shacl:crm_E53_Shape a sh:NodeShape ;
+        sh:targetClass crm:E53 ;
+        sh:name "Place";
+    
+        sh:property [
+            sh:path rdfs:label ;
+            sh:name "Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path rdfs:comment ;
+            sh:name "Description";
+            sh:datatype xsd:string;
+            sh:order 2; 
+            sh:minCount 1;
+            ];
+    
+        sh:property [
+            sh:path crm:P168 ;
+            sh:name "place is defined by" ;
+            sh:class crm:E94 ;
+        ];
+    .

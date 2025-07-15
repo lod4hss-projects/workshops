@@ -15,6 +15,8 @@ Logre Github repository: <https://github.com/lod4hss-apps/logre>
 
 OntoME webiste: <https://ontome.net/>
 
+[SHACL documentation](Profiles/shacl-profiles-management.md)
+
 
 ### Introduction slides
 

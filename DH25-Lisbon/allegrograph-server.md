@@ -2,9 +2,19 @@
 
 ## Allegrograph Server
 
-https://ag15yl6uwsmzwvsd.allegrograph.cloud/repositories/science-history
 
-Base URI: https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/
+* [AllegroGraph by Franz Inc.](https://franz.com/)
+
+* [AllegroGraph Documentation](https://franz.com/agraph/support/documentation/index.html)
+
+
+* https://ag15yl6uwsmzwvsd.allegrograph.cloud/repositories/science-history
+
+* Base URI: https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/resource/
+
+
+
+
 
 
 ## Bundles
