@@ -6,6 +6,7 @@
 @prefix sdh-short: <https://sdhss.org/ontology/shortcuts/>.
 @prefix sdh: <https://sdhss.org/ontology/core/>.
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
+@prefix ogc: <http://www.opengis.net/ont/geosparql#>.
 
 sdh-shacl:crm_E94_Shape a sh:NodeShape ;
         sh:targetClass crm:E94 ;
@@ -113,6 +114,8 @@ sdh-shacl:crm_E53_Shape a sh:NodeShape ;
         sh:property [
             sh:path crm:P168 ;
             sh:name "place is defined by" ;
-            sh:class crm:E94 ;
+            # MODIFIED !
+            # sh:class crm:E94 ;
+            sh:datatype ogc:wktLiteral
         ];
     .
