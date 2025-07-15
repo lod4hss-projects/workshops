@@ -116,6 +116,7 @@ sdh-shacl:crm_E53_Shape a sh:NodeShape ;
             sh:name "place is defined by" ;
             # MODIFIED !
             # sh:class crm:E94 ;
-            sh:datatype ogc:wktLiteral
+            # sh:datatype ogc:wktLiteral
+            sh:datatype xsd:string;
         ];
     .
