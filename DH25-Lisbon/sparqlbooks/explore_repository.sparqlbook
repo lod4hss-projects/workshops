@@ -1,0 +1,8 @@
+[
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "select ?g (count(*) as ?eff)\nwhere {\n  graph ?g {?s ?p ?o}\n} \ngroup by ?g\norder by desc(?eff)",
+    "metadata": {}
+  }
+]
