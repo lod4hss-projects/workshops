@@ -1,0 +1,230 @@
+@prefix sdh-shacl: <https://sdhss.org/shacl/profiles/>. 
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sdh-short: <https://sdhss.org/ontology/shortcuts/>.
+@prefix lrmoo: <http://iflastandards.info/ns/lrm/lrmoo/>.
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
+@prefix sdh-info: <https://sdhss.org/ontology/sources-information-metadata/>.
+
+sdh-shacl:sdh-info_C5_Shape a sh:NodeShape ;
+        sh:targetClass sdh-info:C5 ;
+        sh:name "Bibliographic Citation";
+    
+        sh:property [
+            sh:path sdh-short:P9;
+            sh:name "Standard Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P10;
+            sh:name "Alternative Label";
+            sh:datatype xsd:string;
+            sh:order 2; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P11;
+            sh:name "Definition";
+            sh:datatype xsd:string;
+            sh:order 3; 
+            sh:minCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P12;
+            sh:name "Additional Note";
+            sh:datatype xsd:string;
+            sh:order 4; 
+            sh:minCount 1;
+            ];
+    
+    .
+
+sdh-shacl:crm_E33_Shape a sh:NodeShape ;
+        sh:targetClass crm:E33 ;
+        sh:name "Linguistic Object";
+    
+        sh:property [
+            sh:path sdh-short:P9;
+            sh:name "Standard Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P10;
+            sh:name "Alternative Label";
+            sh:datatype xsd:string;
+            sh:order 2; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P11;
+            sh:name "Definition";
+            sh:datatype xsd:string;
+            sh:order 3; 
+            sh:minCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P12;
+            sh:name "Additional Note";
+            sh:datatype xsd:string;
+            sh:order 4; 
+            sh:minCount 1;
+            ];
+    
+        sh:property [
+            sh:path crm:P129 ;
+            sh:name "is about" ;
+            sh:class crm:E21 ;
+        ];
+    .
+
+sdh-shacl:crm_E21_Shape a sh:NodeShape ;
+        sh:targetClass crm:E21 ;
+        sh:name "Person";
+    
+        sh:property [
+            sh:path sdh-short:P9;
+            sh:name "Standard Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P10;
+            sh:name "Alternative Label";
+            sh:datatype xsd:string;
+            sh:order 2; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P11;
+            sh:name "Definition";
+            sh:datatype xsd:string;
+            sh:order 3; 
+            sh:minCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P12;
+            sh:name "Additional Note";
+            sh:datatype xsd:string;
+            sh:order 4; 
+            sh:minCount 1;
+            ];
+    
+    .
+
+sdh-shacl:lrmoo_F2_Shape a sh:NodeShape ;
+        sh:targetClass lrmoo:F2 ;
+        sh:name "Expression";
+    
+        sh:property [
+            sh:path sdh-short:P9;
+            sh:name "Standard Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P10;
+            sh:name "Alternative Label";
+            sh:datatype xsd:string;
+            sh:order 2; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P11;
+            sh:name "Definition";
+            sh:datatype xsd:string;
+            sh:order 3; 
+            sh:minCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P12;
+            sh:name "Additional Note";
+            sh:datatype xsd:string;
+            sh:order 4; 
+            sh:minCount 1;
+            ];
+    
+        sh:property [
+            sh:path crm:P148 ;
+            sh:name "has component" ;
+            sh:class crm:E33 ;
+        ];
+    .
+
+sdh-shacl:sdh-info_C19_Shape a sh:NodeShape ;
+        sh:targetClass sdh-info:C19 ;
+        sh:name "Item Collection";
+    
+        sh:property [
+            sh:path sdh-short:P9;
+            sh:name "Standard Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P10;
+            sh:name "Alternative Label";
+            sh:datatype xsd:string;
+            sh:order 2; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P11;
+            sh:name "Definition";
+            sh:datatype xsd:string;
+            sh:order 3; 
+            sh:minCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P12;
+            sh:name "Additional Note";
+            sh:datatype xsd:string;
+            sh:order 4; 
+            sh:minCount 1;
+            ];
+    
+        sh:property [
+            sh:path crm:P1 ;
+            sh:name "is identified by" ;
+            sh:class sdh-info:C5 ;
+        ];
+    
+        sh:property [
+            sh:path sdh-info:P22 ;
+            sh:name "shares the embodiment" ;
+            sh:class lrmoo:F2 ;
+        ];
+    .
