@@ -1,3 +1,6 @@
 # Humanistica 2026
 
-Dossier de travail pour l'atelier Humanistica 2026.
+L'objectif de l'atelier est de proposer aux participant·e·s la prise en main d’outils et des méthodologies pour la production de données interopérables et réutilisables dans le contexte de la recherche en Sciences Humaines et Sociales, ceci en mobilisant les méthodes et les outils - gratuits et open source - de l’écosystème proposé par le projet Linked Open Data for Humanities and Social Sciences (LOD4HSS).
+Ce projet propose un environnement collaboratif de recherche s'inscrivant dans la perspectives des données ouvertes liées et des méthodologies des sciences humaines et sociales.
+
+Après une rapide présentation de la vision qui sous-tend le projet, de l'environnement technique mobilisé et des notions de base nécessaires pour suivre l'atelier, une prise en main de cet environnement sera proposée. Celle-ci permettra de s'approprier les différentes étapes du processus de travail : configuration d'un triple store, définition du modèle dans l'application de gestion des ontologies OntoMe, importation de données dans le triple store, édition, enrichissement et exploration des données via l'application Logre (Local Graph Editor). Cet atelier s'adresse aux chercheurs, aux doctorants et aux ingénieurs.
