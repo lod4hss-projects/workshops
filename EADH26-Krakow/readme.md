@@ -10,16 +10,17 @@ Docker desktop
 - install: https://docs.docker.com/get-started/get-docker/
 
 Logre
-- instal
-- documentation
+- instal: https://github.com/lod4hss-apps/logre/tree/entity-card-sprint
 
 OntoME
 - main page: https://ontome.net/
 - login page: https://ontome.net/login
 
 Introduction slides
+- https://docs.google.com/presentation/d/174juy0Lm9cX6xIAJZgBu-AvYngTVz2Lx9R5QuDo-77M/edit?usp=sharing
 
-Walkthrough
+Walkthrough (OntoME and LOGRE tutorial):
+- https://outline.lod4hss.org/s/225a54b8-ccb1-4822-9802-ad5bbf381019
 
 ## Workshop description
 

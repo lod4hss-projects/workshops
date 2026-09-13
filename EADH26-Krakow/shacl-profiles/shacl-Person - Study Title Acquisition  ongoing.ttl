@@ -1,0 +1,287 @@
+@prefix sdh-shacl: <https://sdhss.org/shacl/profiles/>. 
+@prefix sh: <http://www.w3.org/ns/shacl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sdh-short: <https://sdhss.org/ontology/shortcuts/>.
+@prefix sdh: <https://sdhss.org/ontology/core/>.
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
+@prefix sdh-sls: <https://sdhss.org/ontology/social-life-specific/>.
+
+sdh-shacl:sdh_C13_Shape a sh:NodeShape ;
+        sh:targetClass sdh:C13 ;
+        sh:name "Geographical Place";
+    
+        sh:property [
+            sh:path sdh-short:P9;
+            sh:name "Standard Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P10;
+            sh:name "Alternative Label";
+            sh:datatype xsd:string;
+            sh:order 2;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P11;
+            sh:name "Definition";
+            sh:datatype xsd:string;
+            sh:order 3; 
+            sh:minCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P12;
+            sh:name "Additional Note";
+            sh:datatype xsd:string;
+            sh:order 4;
+            ];
+    
+    .
+
+sdh-shacl:crm_E21_Shape a sh:NodeShape ;
+        sh:targetClass crm:E21 ;
+        sh:name "Person";
+    
+        sh:property [
+            sh:path sdh-short:P9;
+            sh:name "Standard Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P10;
+            sh:name "Alternative Label";
+            sh:datatype xsd:string;
+            sh:order 2;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P11;
+            sh:name "Definition";
+            sh:datatype xsd:string;
+            sh:order 3; 
+            sh:minCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P12;
+            sh:name "Additional Note";
+            sh:datatype xsd:string;
+            sh:order 4;
+            ];
+    
+    .
+
+sdh-shacl:crm_E74_Shape a sh:NodeShape ;
+        sh:targetClass crm:E74 ;
+        sh:name "Group";
+    
+        sh:property [
+            sh:path sdh-short:P9;
+            sh:name "Standard Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P10;
+            sh:name "Alternative Label";
+            sh:datatype xsd:string;
+            sh:order 2;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P11;
+            sh:name "Definition";
+            sh:datatype xsd:string;
+            sh:order 3; 
+            sh:minCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P12;
+            sh:name "Additional Note";
+            sh:datatype xsd:string;
+            sh:order 4;
+            ];
+    
+    .
+
+sdh-shacl:sdh-sls_C8_Shape a sh:NodeShape ;
+        sh:targetClass sdh-sls:C8 ;
+        sh:name "Study title";
+    
+        sh:property [
+            sh:path sdh-short:P9;
+            sh:name "Standard Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P10;
+            sh:name "Alternative Label";
+            sh:datatype xsd:string;
+            sh:order 2;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P11;
+            sh:name "Definition";
+            sh:datatype xsd:string;
+            sh:order 3; 
+            sh:minCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P12;
+            sh:name "Additional Note";
+            sh:datatype xsd:string;
+            sh:order 4;
+            ];
+    
+    .
+
+sdh-shacl:sdh-sls_C9_Shape a sh:NodeShape ;
+        sh:targetClass sdh-sls:C9 ;
+        sh:name "Academic Discipline";
+    
+        sh:property [
+            sh:path sdh-short:P9;
+            sh:name "Standard Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:minCount 1;
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P10;
+            sh:name "Alternative Label";
+            sh:datatype xsd:string;
+            sh:order 2;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P11;
+            sh:name "Definition";
+            sh:datatype xsd:string;
+            sh:order 3; 
+            sh:minCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P12;
+            sh:name "Additional Note";
+            sh:datatype xsd:string;
+            sh:order 4;
+            ];
+    
+    .
+
+sdh-shacl:sdh-sls_C7_Shape a sh:NodeShape ;
+        sh:targetClass sdh-sls:C7 ;
+        sh:name "Obtaining a Study Title";
+    
+        sh:property [
+            sh:path sdh-short:P9;
+            sh:name "Standard Label";
+            sh:datatype xsd:string;
+            sh:order 1; 
+            sh:maxCount 1;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P10;
+            sh:name "Alternative Label";
+            sh:datatype xsd:string;
+            sh:order 2;
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P11;
+            sh:name "Definition";
+            sh:datatype xsd:string;
+            sh:order 3; 
+            ];
+    
+        sh:property [
+            sh:path sdh-short:P12;
+            sh:name "Additional Note";
+            sh:datatype xsd:string;
+            sh:order 4;
+            ];
+
+        sh:property [
+            sh:path sdh-short:P1 ;
+            sh:name "at some time within";
+            sh:datatype xsd:string;
+            sh:order 5;
+            ];
+
+        sh:property [
+            sh:path sdh-short:P4 ;
+            sh:name "begins on";
+            sh:datatype xsd:string;
+            sh:order 6;
+            ];
+
+        sh:property [
+            sh:path sdh-short:P7 ;
+            sh:name "ends on";
+            sh:datatype xsd:string;
+            sh:order 7;
+            ];
+    
+        sh:property [
+            sh:path sdh-sls:P9 ;
+            sh:name "was obtained by" ;
+            sh:class crm:E21 ;
+            sh:maxCount 1 ;
+        ];
+    
+        sh:property [
+            sh:path sdh-sls:P11 ;
+            sh:name "has academic supervisor" ;
+            sh:class crm:E21 ;
+        ];
+    
+        sh:property [
+            sh:path sdh-sls:P17 ;
+            sh:name "is delivered by" ;
+            sh:class crm:E74 ;
+        ];
+    
+        sh:property [
+            sh:path sdh-sls:P19 ;
+            sh:name "is obtained at" ;
+            sh:class sdh:C13 ;
+        ];
+    
+        sh:property [
+            sh:path sdh-sls:P10 ;
+            sh:name "is obtention of" ;
+            sh:class sdh-sls:C8 ;
+            sh:maxCount 1 ;
+        ];
+    
+        sh:property [
+            sh:path sdh-sls:P25 ;
+            sh:name "is obtention in" ;
+            sh:class sdh-sls:C9 ;
+        ];
+    .
