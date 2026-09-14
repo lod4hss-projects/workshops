@@ -1,0 +1,92 @@
+[
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "select distinct ?g\nwhere {graph ?g {?s ?p ?o}}",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "select distinct ?p\nwhere {graph <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc.md>\n {?s ?p ?o.}\n }\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "select distinct ?p ?pp ?oo\nwhere {graph <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc.md>\n {?s ?p ?o.\n ?p ?pp ?oo}}\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "select distinct ?class\nwhere {graph <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc.md>\n {?s a ?class.}\n }\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX owl: <http://www.w3.org/2002/07/owl#>\nconstruct {?p a owl:Object}\nwhere {\n    select distinct ?p\nwhere {graph <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc.md>\n {?s ?p ?o.}\n }\n}\n\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n\n# SELECT (COUNT(*) AS ?num)\nselect distinct *\nwhere {\n            {SELECT distinct ?class ?classLabel ?prop ?propLabel ?predicate ?shapeUri\n            ?object\n#            (max(?object) as ?predObject) \n   #         (IRI(CONCAT(\"http://shacl-sudoc.org/shapes#\", STR(UUID()))) AS ?shapeUri)\n            WHERE {\n                graph <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc.md>\n            \n                    {\n                        # Find instances and their classes\n                    ?instance a ?class .\n                   #BIND(IRI(CONCAT(\"http://example.org/shapes#\", ENCODE_FOR_URI(STR(?class)))) AS ?shapeUri)\n                   #BIND(IRI(CONCAT(\"http://example.org/shapes#\", STR(?class))) AS ?shapeUri)\n                   BIND(IRI(CONCAT(STR(?class),\"-shape\")) AS ?shapeUri)\n                    \n                    # FILTER (?class != owl:Class) # Exclude meta-classes\n                    \n                    # Find properties used by these instances\n                    ?instance ?prop ?value .\n                    FILTER (?prop != rdf:type) # Exclude rdf:type from property shapes\n                    \n                    OPTIONAL{?value a ?valueClass.}\n                    \n\n                    \n                    # Generate labels\n                    BIND(COALESCE(REPLACE(STR(?class), \"^.*/\", \"\"), 'no label') AS ?classLabel)\n                    BIND(COALESCE(REPLACE(STR(?prop), \"^.*/\", \"\"), 'no label')  AS ?propLabel)\n\n                    # Determine node kind based on value type\n                    BIND(\n                        IF(isIRI(?value), sh:class, sh:datatype) AS ?predicate\n                    )\n                    BIND(\n                                IF(isIRI(?value), ?valueClass, 'xsd:string') AS ?object\n                            )\n                    }\n            }\n            #group by ?class ?classLabel ?prop ?propLabel ?predicate \n            order by ?class ?prop\n            }\n    \n}\nlimit 100",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "select *\nWHERE {\n    graph <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc.md>\n  \n        {?s <http://purl.org/dc/terms/subject> ?o.\n        ?o a ?oClass}\n        \n}\nlimit 10",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "select *\nWHERE {\n    graph <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc.md>\n  \n        {?s <http://purl.org/dc/terms/subject> ?o.\n        optional{?o a ?oClass}\n        minus {?o a ?oClass}}\n}\nlimit 10",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "insert {\n    graph <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc.md> \n{?o a <http://www.w3.org/2004/02/skos/core#Concept>}\n}\nWHERE {\n    graph <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc.md>\n  \n        {?s <http://purl.org/dc/terms/subject> ?o.\n        minus {?o a ?oClass}}\n}",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "select *\nWHERE {\n    graph <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc.md>\n  \n        {?s <http://id.loc.gov/vocabulary/relators/aut> ?o.\n        optional{?o a ?oClass}\n        minus {?o a ?oClass}}\n}\nlimit 10",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n\nCONSTRUCT {\n  # Create a NodeShape for every class found\n  ?shapeUri a sh:NodeShape ;\n            sh:targetClass ?class ;\n            sh:name ?classLabel ;\n  \n    # Create PropertyShapes for properties used by instances of that class\n            sh:property [\n                    # rdf:type sh:PropertyShape ;\n                    sh:path ?prop ;\n                    sh:name ?propLabel;\n                    #sh:minCount 1 ; # Assumes if it exists in data, it might be required (adjust logic as needed)\n                    ?predicate ?predicateObject;\n            ].\n}\nwhere {\n            {SELECT distinct ?class ?classLabel ?prop ?propLabel ?predicate ?predicateObject ?shapeUri\n            WHERE {\n                graph <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc.md>\n            \n                    {\n                        # Find instances and their classes\n                    ?instance a ?class .\n                   BIND(IRI(CONCAT(STR(?class),\"-shape\")) AS ?shapeUri)\n                    \n                    # FILTER (?class != owl:Class) # Exclude meta-classes\n                    \n                    # Find properties used by these instances\n                    ?instance ?prop ?value .\n                    FILTER (?prop != rdf:type) # Exclude rdf:type from property shapes\n                    \n                    OPTIONAL{?value a ?valueClass.}\n                    \n\n                    \n                    # Generate labels\n                    BIND(COALESCE(REPLACE(STR(?class), \"^.*/\", \"\"), 'no label') AS ?classLabel)\n                    BIND(COALESCE(REPLACE(STR(?prop), \"^.*/\", \"\"), 'no label')  AS ?propLabel)\n\n                    # Determine node kind based on value type\n                    BIND(\n                        IF(isIRI(?value), sh:class, sh:datatype) AS ?predicate\n                    )\n                    BIND(\n                        IF(isIRI(?value), ?valueClass, 'xsd:string') AS ?predicateObject\n                            )\n                    }\n            }\n            #group by ?class ?classLabel ?prop ?propLabel ?predicate \n            order by ?class\n            }\n    \n}\nlimit 100",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX sh: <http://www.w3.org/ns/shacl#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n\nINSERT { \n    graph <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc-shacl.md> {\n   # Create a NodeShape for every class found\n  ?shapeUri a sh:NodeShape ;\n            sh:targetClass ?class ;\n            sh:name ?classLabel ;\n  \n    # Create PropertyShapes for properties used by instances of that class\n            sh:property [\n                    # rdf:type sh:PropertyShape ;\n                    sh:path ?prop ;\n                    sh:name ?propLabel;\n                    #sh:minCount 1 ; # Assumes if it exists in data, it might be required (adjust logic as needed)\n                    ?predicate ?predicateObject;\n            ].\n    }\n}\nwhere {\n            {SELECT distinct ?class ?classLabel ?prop ?propLabel ?predicate ?predicateObject ?shapeUri\n            WHERE {\n                graph <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc.md>\n            \n                    {\n                        # Find instances and their classes\n                    ?instance a ?class .\n                   BIND(IRI(CONCAT(STR(?class),\"-shape\")) AS ?shapeUri)\n                    \n                    # FILTER (?class != owl:Class) # Exclude meta-classes\n                    \n                    # Find properties used by these instances\n                    ?instance ?prop ?value .\n                    FILTER (?prop != rdf:type) # Exclude rdf:type from property shapes\n                    \n                    OPTIONAL{?value a ?valueClass.}\n                    \n\n                    \n                    # Generate labels\n                    BIND(COALESCE(REPLACE(STR(?class), \"^.*/\", \"\"), 'no label') AS ?classLabel)\n                    BIND(COALESCE(REPLACE(STR(?prop), \"^.*/\", \"\"), 'no label')  AS ?propLabel)\n\n                    # Determine node kind based on value type\n                    BIND(\n                        IF(isIRI(?value), sh:class, sh:datatype) AS ?predicate\n                    )\n                    BIND(\n                        IF(isIRI(?value), ?valueClass, 'xsd:string') AS ?predicateObject\n                            )\n                    }\n            }\n            #group by ?class ?classLabel ?prop ?propLabel ?predicate \n            order by ?class\n            }\n    \n}",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "# clear graph <https://github.com/lod4hss-projects/workshops/blob/main/DH25-Lisbon/graphs/idref-sudoc-shacl.md>",
+    "metadata": {}
+  }
+]
