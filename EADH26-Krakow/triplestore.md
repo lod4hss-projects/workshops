@@ -3,7 +3,7 @@
 ## Triplestore
 
 
-* Endpoint URL: https://open-gdb.lod4hss.org/repositories/DH25-Lisbon
+* Endpoint URL: https://sparql-gdb.lod4hss.org/EADH-2026
 
 
 
